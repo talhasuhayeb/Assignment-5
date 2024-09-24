@@ -1,4 +1,5 @@
 let totalDonation = 0;
+let donationHistory = [];
 const donationButton1 = document.getElementById("donation1");
 donationButton1.addEventListener("click", function () {
   const amount1 = parseInt(document.getElementById("amountInput1").value);
@@ -15,6 +16,20 @@ donationButton1.addEventListener("click", function () {
     alert("Invalid Donation Amount ");
     return;
   }
+
+  if (amount1 > remainingBalence) {
+    alert("Insufficient balance.");
+    return;
+  }
+  if ("amountInput1" == "") {
+    alert("Enter amount");
+    return;
+  }
+  const modal = document.getElementById("my_modal_1");
+  modal.showModal();
+  let donationEntry = `${amount1} taka is Donate for Flood Relief in Noakhali,Bangladesh`;
+  donationHistory.push(donationEntry);
+  updateHistory();
 });
 
 const donationButton2 = document.getElementById("donation2");
@@ -33,6 +48,19 @@ donationButton2.addEventListener("click", function () {
     alert("Invalid Donation Amount ");
     return;
   }
+  if (amount2 > remainingBalence) {
+    alert("Insufficient balance.");
+    return;
+  }
+  if ("amountInput2" == "") {
+    alert("Enter amount");
+    return;
+  }
+  const modal = document.getElementById("my_modal_1");
+  modal.showModal();
+  let donationEntry = `${amount2} taka is Donate for Flood Relief in Feni,Bangladesh`;
+  donationHistory.push(donationEntry);
+  updateHistory();
 });
 
 const donationButton3 = document.getElementById("donation3");
@@ -51,6 +79,19 @@ donationButton3.addEventListener("click", function () {
     alert("Invalid Donation Amount ");
     return;
   }
+  if (amount3 > remainingBalence) {
+    alert("Insufficient balance.");
+    return;
+  }
+  if ("amountInput3" == "") {
+    alert("Enter amount");
+    return;
+  }
+  const modal = document.getElementById("my_modal_1");
+  modal.showModal();
+  let donationEntry = `${amount3} taka is Donate for Aid for Injured in the Quota Movement`;
+  donationHistory.push(donationEntry);
+  updateHistory();
 });
 
 //History button function
@@ -63,6 +104,8 @@ historyTab.addEventListener("click", function () {
   document.getElementById("donation-form").classList.add("hidden");
   document.getElementById("history-form").classList.remove("hidden");
 });
+
+//Donation button function
 donationTab.addEventListener("click", function () {
   donationTab.classList.add("bg-[#B4F461]", "text-gray-500");
   historyTab.classList.remove("btn-outline", "bg-[#B4F461]", "text-gray-500");
@@ -70,3 +113,20 @@ donationTab.addEventListener("click", function () {
   document.getElementById("donation-form").classList.remove("hidden");
   document.getElementById("history-form").classList.add("hidden");
 });
+
+function updateHistory() {
+  let historyDiv = document.getElementById("donationHistory");
+  historyDiv.innerHTML = "";
+  donationHistory.forEach((item) => {
+    let div = document.createElement("div");
+    div.classList.add(
+      "p-4",
+      "bg-gray-50",
+      "border",
+      "border-gray-200",
+      "rounded"
+    );
+    div.innerText = item;
+    historyDiv.appendChild(div);
+  });
+}
