@@ -132,7 +132,8 @@ function updateHistory() {
       "bg-gray-50",
       "border",
       "border-gray-200",
-      "rounded"
+      "rounded",
+      "font-medium"
     );
     div.innerText = item;
     historyDiv.appendChild(div);
